@@ -601,8 +601,8 @@ case p_opcode of
    m_adc_abs,m_adc_dir,m_adc_imm,m_adc_s,m_and_abs,m_and_dir,m_and_imm,
    m_and_s,m_asl_a,m_dea,m_eor_abs,m_eor_dir,m_eor_imm,m_eor_s,m_lda_absx,
    m_lda_dirx,m_lda_indl,m_lda_indly,m_lda_longx,m_lda_s,m_lsr_a,m_ora_abs,
-   m_ora_dir,m_ora_dirX,m_ora_imm,m_ora_longX,m_ora_s,m_pla,m_sbc_abs,
-   m_sbc_dir,m_sbc_imm,m_sbc_s,m_tdc,m_tsc,m_tsb_dir,m_tsb_abs:
+   m_ora_dir,m_ora_dirX,m_ora_imm,m_ora_long,m_ora_longX,m_ora_s,m_pla,
+   m_sbc_abs,m_sbc_dir,m_sbc_imm,m_sbc_s,m_tdc,m_tsc,m_tsb_dir,m_tsb_abs:
       aRegister.condition := regUnknown;
 
    m_ldy_absX,m_ldy_dirX,m_ply:
@@ -1216,7 +1216,7 @@ var
              m_cmp_long,m_cmp_s,m_dea,m_eor_abs,m_eor_dir,m_eor_imm,m_eor_s,
              m_ina,m_lda_abs,m_lda_absx,m_lda_dir,m_lda_dirx,m_lda_imm,
              m_lda_indl,m_lda_indly,m_lda_long,m_lda_longx,m_lda_s,m_lsr_a,
-             m_ora_abs,m_ora_dir,m_ora_dirX,m_ora_imm,m_ora_longX,m_ora_s,
+             m_ora_abs,m_ora_dir,m_ora_dirX,m_ora_imm,m_ora_long,m_ora_longX,m_ora_s,
              m_pha,m_sbc_abs,m_sbc_dir,m_sbc_imm,m_sbc_s,m_sta_abs,m_sta_absX,
              m_sta_dir,m_sta_dirX,m_sta_indl,m_sta_indlY,m_sta_long,m_sta_longX,
              m_sta_s,m_tax,m_tay,m_tcd,m_tcs,m_xba,m_tsb_dir,m_tsb_abs] then
