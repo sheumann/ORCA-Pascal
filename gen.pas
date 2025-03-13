@@ -2985,10 +2985,9 @@ case optype of
 	 GenImplied(m_pha);
 	 end; {if}
       GetPointer(op^.left);
-      if short then
-	 if simple then
-	    GenNative(m_sep, immediate, 32, nil, 0);
       if gLong.where = inPointer then begin
+         if short and simple then
+            GenNative(m_sep, immediate, 32, nil, 0);
 	 if zero then
 	    GenNative(m_lda_imm, immediate, 0, nil, 0)
 	 else
@@ -2999,7 +2998,9 @@ case optype of
 	    GenNative(m_sta_indlY, direct, gLong.disp, nil, 0);
 	 end {if}
       else if gLong.where = localAddress then begin
-	 if gLong.fixedDisp then
+	 if gLong.fixedDisp then begin
+            if short and simple then
+               GenNative(m_sep, immediate, 32, nil, 0);
 	    if (gLong.disp & $FF00) = 0 then
 	       if zero then
 		  GenNative(m_stz_dir, direct, gLong.disp, nil, 0)
@@ -3018,6 +3019,7 @@ case optype of
 		  GenNative(m_sta_dirX, direct, 0, nil, 0);
 		  end; {else}
 	       end {else}
+            end {if}
 	 else begin
 	    if (gLong.disp & $FF00) <> 0 then begin
 	       GenImplied(m_txa);
@@ -3026,6 +3028,8 @@ case optype of
 	       GenImplied(m_tax);
 	       gLong.disp := 0;
 	       end; {if}
+            if short and simple then
+               GenNative(m_sep, immediate, 32, nil, 0);
 	    if zero then
 	       GenNative(m_stz_dirX, direct, gLong.disp, nil, 0)
 	    else begin
@@ -3035,6 +3039,8 @@ case optype of
 	    end; {else}
 	 end {else if}
       else {if gLong.where = globalLabel then} begin
+         if short and simple then
+            GenNative(m_sep, immediate, 32, nil, 0);
 	 if zero then begin
 	    if not smallMemoryModel then
 	       GenNative(m_lda_imm, immediate, 0, nil, 0);
