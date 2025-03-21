@@ -1838,7 +1838,7 @@ case op^.opcode of			{check for optimizations of this node}
             op^.optype := cgUWord;
             end {if}
          else if op^.right^.optype in [cgByte, cgUByte, cgWord, cgUWord] then begin
-            if op^.right^.q <> 0 then
+            if op^.right^.q = 1 then
                if op^.left^.opcode in
          	  [pc_and,pc_ior,pc_neq,pc_equ,pc_geq,pc_leq,pc_les,pc_grt]
                   then begin
@@ -1847,7 +1847,7 @@ case op^.opcode of			{check for optimizations of this node}
                   end; {if}
             end {else if}
          else if op^.right^.optype in [cgLong, cgULong] then begin
-            if op^.right^.lval <> 0 then
+            if op^.right^.lval = 1 then
                if op^.left^.opcode in
          	  [pc_and,pc_ior,pc_neq,pc_equ,pc_geq,pc_leq,pc_les,pc_grt]
                   then begin
