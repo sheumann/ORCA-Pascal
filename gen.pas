@@ -3318,8 +3318,8 @@ case optype of
 
 	    globalLabel: begin
 	       if not gLong.fixedDisp then
-		  GenImplied(m_txa)
-	       else if disp > 253 then
+		  GenImplied(m_txa);
+	       if disp > 253 then
 		  GenNative(m_ldx_imm, immediate, disp, nil, 0);
 	       if gLong.fixedDisp then
 		  GenNative(m_lda_imm, immediate, gLong.disp, gLong.lab, 0)
