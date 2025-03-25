@@ -1019,10 +1019,9 @@ var
                         same := true;
       if same then begin
          case op^.optype of
-            cgReal: disp := 3;
-            cgDouble: disp := 7;
-            cgExtended: disp := 9;
-            cgComp: disp := 11;
+            cgReal: disp := 2;
+            cgDouble: disp := 6;
+            cgExtended: disp := 8;
             end; {case}
          opl^.left^.optype := cgWord;
          opl^.left^.q := opl^.left^.q + disp;
@@ -1031,7 +1030,7 @@ var
          op2 := pointer(Calloc(sizeof(intermediate_code)));
          op2^.opcode := pc_ldc;
          op2^.optype := cgWord;
-         op2^.q := $0080;
+         op2^.q := $8000;
          opl^.right := op2;
          opl^.opcode := pc_bxr;
          end {if}
@@ -2582,7 +2581,7 @@ case op^.opcode of			{check for optimizations of this node}
          op^.opcode := pc_vsr;
 
    pc_sro: begin			{pc_sro}
-      if op^.optype in [cgReal,cgDouble,cgComp,cgExtended] then
+      if op^.optype in [cgReal,cgDouble,cgExtended] then
          RealStoreOptimizations(op, op^.left)
       else if op^.optype = cgSet then begin
          if op^.q = 2 then begin
@@ -2607,7 +2606,7 @@ case op^.opcode of			{check for optimizations of this node}
       end; {case pc_sro}
 
    pc_sto: begin			{pc_sto}
-      if op^.optype in [cgReal,cgDouble,cgComp,cgExtended] then
+      if op^.optype in [cgReal,cgDouble,cgExtended] then
          RealStoreOptimizations(op, op^.right);
       if op^.optype <> cgSet then begin
 	 if op^.left^.opcode = pc_lao then begin
@@ -2629,7 +2628,7 @@ case op^.opcode of			{check for optimizations of this node}
       end; {case pc_sto}
 
    pc_str: begin			{pc_str}
-      if op^.optype in [cgReal,cgDouble,cgComp,cgExtended] then
+      if op^.optype in [cgReal,cgDouble,cgExtended] then
          RealStoreOptimizations(op, op^.left)
       else if op^.optype = cgSet then begin
          if op^.s = 2 then begin
