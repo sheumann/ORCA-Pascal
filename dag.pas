@@ -1333,8 +1333,10 @@ case op^.opcode of			{check for optimizations of this node}
          opv := op^.left;
          end {if}
       else if op^.right^.opcode = pc_ldc then begin
-         if op^.right^.lval = 0 then
-            opv := op^.right
+         if op^.right^.lval = 0 then begin
+             if not SideEffects(op^.left) then
+                opv := op^.right;
+             end {if}
          else if op^.right^.lval = -1 then
             opv := op^.left;
          end; {else if}
@@ -1348,8 +1350,10 @@ case op^.opcode of			{check for optimizations of this node}
          opv := op^.left;
          end {if}
       else if op^.right^.opcode = pc_ldc then begin
-         if op^.right^.lval = -1 then
-            opv := op^.right
+         if op^.right^.lval = -1 then begin
+             if not SideEffects(op^.left) then
+                opv := op^.right;
+             end {if}
          else if op^.right^.lval = 0 then
             opv := op^.left;
          end; {else if}
@@ -1380,8 +1384,10 @@ case op^.opcode of			{check for optimizations of this node}
          opv := op^.left;
          end {if}
       else if op^.right^.opcode = pc_ldc then begin
-         if op^.right^.q = 0 then
-            opv := op^.right
+         if op^.right^.q = 0 then begin
+             if not SideEffects(op^.left) then
+                opv := op^.right;
+             end {if}
          else if op^.right^.q = -1 then
             opv := op^.left;
          end; {else if}
@@ -1417,8 +1423,10 @@ case op^.opcode of			{check for optimizations of this node}
          opv := op^.left;
          end {if}
       else if op^.right^.opcode = pc_ldc then begin
-         if op^.right^.q = -1 then
-            opv := op^.right
+         if op^.right^.q = -1 then begin
+             if not SideEffects(op^.left) then
+                opv := op^.right;
+             end {if}
          else if op^.right^.q = 0 then
             opv := op^.left;
          end; {else if}
