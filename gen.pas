@@ -317,7 +317,8 @@ function NeedsCondition (opcode: pcodes): boolean;
 begin {NeedsCondition}
 NeedsCondition := opcode in
    [pc_and,pc_ior,pc_cui,pc_cup,pc_lor,pc_lnd,
-    pc_cop,pc_cpo,pc_dvi,pc_mpi,pc_adi,pc_sbi,pc_mod,pc_bno];
+    pc_cop,pc_cpo,pc_dvi,pc_mpi,pc_adi,pc_sbi,pc_mod,pc_bno,
+    pc_shl,pc_shr,pc_usr];
 end; {NeedsCondition}
 
 
