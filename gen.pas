@@ -4877,18 +4877,6 @@ procedure GenTree {op: icptr};
       i: integer;			{loop/index variable}
       len: integer;			{length of the file name}
 
-
-      function ToUpper (ch: char): char;
-
-      { Return the uppercase equivalent of the input character	}
-
-      begin {ToUpper}
-      if (ch >= 'a') and (ch <= 'z') then
-	 ch := chr(ord(ch)-ord('a')+ord('A'));
-      ToUpper := ch;
-      end; {ToUpper}
-
-
    begin {GenNam}
    {generate a call to install the name in the traceback facility}
    if traceBack then begin
@@ -4927,8 +4915,7 @@ procedure GenTree {op: icptr};
       if maxString-stringSize >= len+1 then begin
          stringSpace[stringSize+1] := chr(len);
          for i := 1 to len do
-            stringSpace[i+stringSize+1] :=
-               ToUpper(fNameGS.theString.theString[i]);
+            stringSpace[i+stringSize+1] := fNameGS.theString.theString[i];
          stringSize := stringSize + len + 1;
          end {if}
       else
